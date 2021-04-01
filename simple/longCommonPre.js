@@ -114,13 +114,15 @@ const longCommonPrefix6 = (strArr) => {
       console.log('start === end', start, end, arr[start]);
       return arr[start];
     } else {
-      let middle = Math.ceil((end - start)/ 2) + start;
+
+      let middle = Math.floor((end - start)/ 2) + start;
+      console.log('middile start end', middle, start, end)
+
       let left = dichotomy(arr, start, middle); 
       let right = dichotomy(arr, middle + 1, end);
-      console.log('middile start end', middle + 1, start, end)
       return getCommonStr(left, right);
     }
   }
   return dichotomy(strArr, 0, strArr.length - 1);
 }
-console.log('6',longCommonPrefix6(["reflower","flow","f", "flight", "fl"]))
+console.log('6',longCommonPrefix6(["flower","flow","f", "flight", "fl"]))
