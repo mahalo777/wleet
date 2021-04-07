@@ -5,7 +5,7 @@
 左括号必须以正确的顺序闭合。
  */
 
-// 模拟栈 看题解
+// 每次比较栈顶和当前元素，匹配出栈，不匹配入栈
 const isValidBrackets = (str) => {
   // 注意出栈顺序
   const match = (type) => {
@@ -36,4 +36,35 @@ const isValidBrackets = (str) => {
   return !arr.length;
 }
 
-console.log('isValidBrackets', isValidBrackets('(){}}{'))
+// 使用map根据是否能匹配上右括号
+// 相比上面，增加中间退出的方法，效率更高
+const isValid = (s) => {
+  if (s.length % 2 === 1) {
+    return false;
+  }
+  const match = new Map([
+    ['}', '{'],
+    [']', '['],
+    [')', '(']
+  ]);
+  const stk = [];
+  for (let i = 0; i < s.length; i ++) {
+    let cur = s[i];
+    let stkTop = stk[0];
+    if (match.has(cur)) {
+      if(stk.length === 0 || match.get(cur) !== stkTop) {
+        return false;
+      }
+      stk.shift();
+    } else {
+      stk.unshift(cur);
+    }
+  }
+  return !stk.length;
+};
+
+
+// 总结
+// 很容易想到栈
+// 代码配上合理的提前结束条件，总能提升效率
+// 配合使用replace也行...可以但是没必要
