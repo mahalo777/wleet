@@ -4,7 +4,9 @@
  * 注意indexOf('')返回是0，这在面试的时候是个好问题
 */
 
-// ？？？
+// 字符串匹配的算法
+
+// BF算法
 const strStr = (haystack, needle) => {
   if (needle === '') {
     return 0;
@@ -43,6 +45,9 @@ const strStr2 = (haystack, needle) => {
 }
 console.log(strStr2('stud', 'u'));
 
-// kmp
+// Boyer Moore
+// 坏字符规则、好后缀规则
+
+
 
 
