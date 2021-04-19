@@ -45,7 +45,7 @@ const searchInsert2 = (nums, target) => {
 
 // 减治法
 // 如经典办法是分成三份，减治法则是分成两份，一份肯定没有，一份可能存在。
-// 最终结果非是两个值比较，非此即彼
+// 最终结果是两个值比较，非此即彼
 const searchInsert3 = (nums, target) => {
   let left = 0;
   let len = nums.length;
@@ -68,6 +68,8 @@ const searchInsert3 = (nums, target) => {
   return left;
 }
 
+// 官方题解
+// ans 初值设置为数组长度可以省略边界条件的判断，因为存在一种情况是 target 大于数组中的所有数，此时需要插入到数组长度的位置。
 const searchInsert5 = (nums, target) => {
   let left = 0;
   let ans = nums.length;
@@ -75,7 +77,6 @@ const searchInsert5 = (nums, target) => {
 
   while(left <= right) {
     let middle = Math.floor((right - left) / 2) + left;
-    console.log('--',nums[left], nums[right], nums[middle])
     if (target <= nums[middle]) {
       right = middle - 1;
       ans = middle;
@@ -90,4 +91,5 @@ console.log('res', searchInsert5([1,3,5,7], 4));
 
 /**
  * 总结
+ * 无论是减治法还是其他方法，注意边界值即可
  */
